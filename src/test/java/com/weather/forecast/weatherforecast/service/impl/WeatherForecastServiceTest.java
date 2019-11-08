@@ -27,7 +27,7 @@ public class WeatherForecastServiceTest extends BaseTestCase {
     @Test
     public void testGetWeatherData_positive(){
 
-//        when(restTemplate.exchange(Mockito.any(RequestEntity.class), Mockito.any(Class.class))).then
+//        when(restTemplate.exchange(Mockito.any(RequestEntity.class), Mockito.any(Class.class)));
     }
 
     @Test
