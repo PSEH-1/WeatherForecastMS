@@ -8,11 +8,13 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
 import java.net.URI;
 
+@Service
 public class WeatherForecastServiceImpl implements WeatherForecastService {
 
     @Value("${weather.forecast.url}")
@@ -20,8 +22,11 @@ public class WeatherForecastServiceImpl implements WeatherForecastService {
     @Value("${weather.forecast.key}")
     private String apiKey;
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public WeatherForecastServiceImpl() {
+        restTemplate = new RestTemplate();
+    }
 
     @Cacheable("weather")
     public WeatherData getWeather(String city){
@@ -43,7 +48,7 @@ public class WeatherForecastServiceImpl implements WeatherForecastService {
         try {
             RequestEntity<?> request = RequestEntity.get(url)
                     .accept(MediaType.APPLICATION_JSON).build();
-            ResponseEntity<T> exchange = this.restTemplate
+            ResponseEntity<T> exchange = restTemplate
                     .exchange(request, responseType);
             weather = exchange.getBody();
         } catch(Exception e){

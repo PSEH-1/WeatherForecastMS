@@ -4,6 +4,7 @@ import com.weather.forecast.weatherforecast.data.WeatherData;
 import com.weather.forecast.weatherforecast.service.WeatherForecastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class WeatherForecastController {
 
 
     @GetMapping(value = "/list")
-    public WeatherData getWeatherForecast(String city){
+    public WeatherData getWeatherForecast(@PathVariable String city){
 
        return weatherForeCastService.getWeather(city);
     }
