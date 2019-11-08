@@ -13,10 +13,24 @@ public class WeatherForecastController {
     private WeatherForecastService weatherForeCastService;
 
 
-    @GetMapping(value = "/weather")
+    @GetMapping(value = "/forecast/general")
     public WeatherData getWeatherForecast(@RequestParam String city){
 
        return weatherForeCastService.getWeather(city);
+    }
+
+
+    @RequestMapping(value = "/forecast/{city}/lowTemperature", method=RequestMethod.GET)
+    public String getWeatherLowTemp(@PathVariable final String city)
+    {
+
+        return weatherForeCastService.getWeatherForLowTemp(city);
+    }
+
+    @RequestMapping(value = "/forecast/{city}/highTemperature", method=RequestMethod.GET)
+    public String getWeatherHighTemp(@PathVariable final String city)
+    {
+   return weatherForeCastService.getWeatherForHighTemp(city);
     }
 
 }

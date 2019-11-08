@@ -38,7 +38,4 @@ public class WeatherForecastServiceTest extends BaseTestCase {
 
 
 
-
-
-
 }
