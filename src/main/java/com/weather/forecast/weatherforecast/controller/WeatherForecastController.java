@@ -16,7 +16,7 @@ public class WeatherForecastController {
     private WeatherForecastService weatherForeCastService;
 
 
-    @GetMapping(value = "/list")
+    @GetMapping(value = "/weather")
     public WeatherData getWeatherForecast(@PathVariable String city){
 
        return weatherForeCastService.getWeather(city);
