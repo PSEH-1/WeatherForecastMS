@@ -22,6 +22,8 @@ stage('Deploy Image') {
   steps{
     script {
       docker.withRegistry( '', registryCredential ) {
+      docker build --no-cache -t weather-forecast-app .
+      docker tag weather-forecast-app:latest sagdeshm1/weather-forecast-app:latest
         dockerImage.push()
       }
     }
